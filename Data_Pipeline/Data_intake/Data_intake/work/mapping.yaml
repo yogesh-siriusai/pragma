@@ -1,0 +1,124 @@
+client: demo
+source: ..\..\10k_data_1
+options:
+  timezone: UTC
+  drop_future_events: true
+tables:
+  collections_case:
+    shape: event_stream
+    entity: customer_id
+    time: case_open_timestamp
+    source_name: communication
+    fields:
+      drop:
+      - collection_case_id
+      - product_id
+  collections_case_snapshot:
+    shape: child_of_event
+    time: snapshot_date
+    source_name: communication
+    resolve_entity_via:
+      parent: collections_case
+      key: collection_case_id
+    fields:
+      drop:
+      - collection_case_id
+      - action_id
+  customer_profile:
+    shape: entity_master
+    entity: customer_id
+    lifelong:
+    - relationship_open_date
+    - acc_cre_ts
+    - relationship_close_date
+    - kyc_last_review_date
+  customer_snapshot:
+    shape: periodic_snapshot
+    entity: customer_id
+    time: snapshot_date
+    source_name: app
+    emit: changes_only
+  fraud_case:
+    shape: event_stream
+    entity: customer_id
+    time: alert_timestamp
+    source_name: communication
+    fields:
+      drop:
+      - alert_id
+      - fraud_case_id
+  fraud_case_snapshot:
+    shape: child_of_event
+    time: snapshot_date
+    source_name: communication
+    resolve_entity_via:
+      parent: fraud_case
+      key: alert_id
+    fields:
+      drop:
+      - alert_id
+  interaction_event:
+    shape: event_stream
+    entity: customer_id
+    time: event_time
+    source_name: app
+    fields:
+      drop:
+      - event_id
+      - session_id
+      - event_sequence_number
+      - transaction_id
+  merchant:
+    shape: dimension
+    action: drop
+    fields:
+      drop:
+      - merchant_id
+  product_event:
+    shape: event_stream
+    entity: customer_id
+    time: event_date
+    source_name: app
+    fields:
+      drop:
+      - prd_event_id
+      - product_id
+      - application_id
+  product_snapshot:
+    shape: periodic_snapshot
+    entity: customer_id
+    time: snapshot_date
+    source_name: transaction
+    emit: changes_only
+    snapshot_of: product_id
+    fields:
+      drop:
+      - product_id
+      - account_number_masked
+      - linked_product_id
+  session:
+    shape: event_stream
+    entity: customer_id
+    time: session_start
+    source_name: app
+    fields:
+      drop:
+      - session_id
+      - device_id
+      - ip_address_hash
+      - geo_location_hash
+  txn_event:
+    shape: event_stream
+    entity: customer_id
+    time: record_available_timestamp
+    source_name: transaction
+    fields:
+      drop:
+      - txn_event_id
+      - link_reference
+      - linked_event_id
+      - product_id
+      - merchant_id
+      - reversed_transaction_id
+      - account_number_masked
+      - alert_id

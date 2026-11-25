@@ -1,0 +1,2191 @@
+{
+  "client": "demo",
+  "generated": "2026-11-23T07:03:22+00:00",
+  "readiness": {
+    "score": 96.4,
+    "band": "GREEN",
+    "checks": [
+      {
+        "name": "entity_resolution",
+        "weight": 20,
+        "scored": 20.0,
+        "findings": []
+      },
+      {
+        "name": "time_validity",
+        "weight": 20,
+        "scored": 20.0,
+        "findings": []
+      },
+      {
+        "name": "referential_integrity",
+        "weight": 10,
+        "scored": 10.0,
+        "findings": []
+      },
+      {
+        "name": "uniqueness",
+        "weight": 10,
+        "scored": 10.0,
+        "findings": []
+      },
+      {
+        "name": "type_conformance",
+        "weight": 10,
+        "scored": 10.0,
+        "findings": []
+      },
+      {
+        "name": "signal_density",
+        "weight": 10,
+        "scored": 6.4,
+        "findings": [
+          "collections_case_snapshot: near-empty fields - writeoff_amount 98%, recovery_amount 100%, recovery_source 100%",
+          "interaction_event: near-empty fields - error_code 99%, amt_txn 98%",
+          "product_event: near-empty fields - old_limit 97%, new_limit 97%, dpd_reset_flag 100%, final_outcome 98%, approved_amount 100%",
+          "product_snapshot: near-empty fields - close_date 99%, delinquency_start_date 98%, principal_amount 98%, sanctioned_amount 98%, instalment_amount 98%, instalment_frequency 98% (+1 more)",
+          "session: near-empty fields - login_failure_reason 96%",
+          "txn_event: near-empty fields - decline_category 98%, is_customer_caused 98%, payment_funding_product 96%, threeds_outcome 96%"
+        ]
+      },
+      {
+        "name": "temporal_sanity",
+        "weight": 10,
+        "scored": 10.0,
+        "findings": []
+      },
+      {
+        "name": "volume_adequacy",
+        "weight": 10,
+        "scored": 10,
+        "findings": [
+          "29,867,531 event rows over 10,000 customers (2,987 each on average)"
+        ]
+      }
+    ]
+  },
+  "tables": {
+    "collections_case": {
+      "rows": 610,
+      "shape": "event_stream",
+      "columns": [
+        {
+          "name": "collection_case_id",
+          "dtype": "String",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 610,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "product_id",
+          "dtype": "String",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 585,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "customer_id",
+          "dtype": "String",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 576,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "case_open_timestamp",
+          "dtype": "Datetime(time_unit='us', time_zone=None)",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 610,
+          "distinct_basis": "exact",
+          "min": "2025-06-19 08:48:21.093496",
+          "max": "2028-09-19 07:21:13.312335"
+        },
+        {
+          "name": "case_open_dpd",
+          "dtype": "Int32",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 11,
+          "distinct_basis": "exact",
+          "min": "30",
+          "max": "42"
+        },
+        {
+          "name": "outstanding_at_assignment",
+          "dtype": "Decimal(precision=18, scale=2)",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 607,
+          "distinct_basis": "exact",
+          "min": "25.33",
+          "max": "17747.26"
+        },
+        {
+          "name": "strategy_segment_code",
+          "dtype": "String",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 5,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "promise_made_timestamp",
+          "dtype": "Datetime(time_unit='us', time_zone=None)",
+          "nulls": 390,
+          "null_rate": 0.6393,
+          "distinct": 177,
+          "distinct_basis": "exact",
+          "min": "2025-10-01 00:00:00",
+          "max": "2028-09-13 00:00:00"
+        },
+        {
+          "name": "promise_amount",
+          "dtype": "Decimal(precision=18, scale=2)",
+          "nulls": 390,
+          "null_rate": 0.6393,
+          "distinct": 220,
+          "distinct_basis": "exact",
+          "min": "44.93",
+          "max": "13926.82"
+        },
+        {
+          "name": "promise_date",
+          "dtype": "Date",
+          "nulls": 390,
+          "null_rate": 0.6393,
+          "distinct": 196,
+          "distinct_basis": "exact",
+          "min": "2025-10-05",
+          "max": "2028-09-28"
+        },
+        {
+          "name": "arrangement_type",
+          "dtype": "String",
+          "nulls": 528,
+          "null_rate": 0.8656,
+          "distinct": 4,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "arrangement_start_date",
+          "dtype": "Date",
+          "nulls": 528,
+          "null_rate": 0.8656,
+          "distinct": 81,
+          "distinct_basis": "exact",
+          "min": "2025-10-02",
+          "max": "2028-09-17"
+        },
+        {
+          "name": "number_of_instalments",
+          "dtype": "Int32",
+          "nulls": 528,
+          "null_rate": 0.8656,
+          "distinct": 21,
+          "distinct_basis": "exact",
+          "min": "3",
+          "max": "23"
+        },
+        {
+          "name": "instalment_amount",
+          "dtype": "Decimal(precision=18, scale=2)",
+          "nulls": 528,
+          "null_rate": 0.8656,
+          "distinct": 82,
+          "distinct_basis": "exact",
+          "min": "26.18",
+          "max": "1697.01"
+        },
+        {
+          "name": "total_arrangement_amount",
+          "dtype": "Decimal(precision=18, scale=2)",
+          "nulls": 528,
+          "null_rate": 0.8656,
+          "distinct": 82,
+          "distinct_basis": "exact",
+          "min": "130.90",
+          "max": "8812.23"
+        }
+      ]
+    },
+    "collections_case_snapshot": {
+      "rows": 4394,
+      "shape": "child_of_event",
+      "columns": [
+        {
+          "name": "snapshot_date",
+          "dtype": "Date",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 1029,
+          "distinct_basis": "exact",
+          "min": "2025-10-01",
+          "max": "2028-09-30"
+        },
+        {
+          "name": "collection_case_id",
+          "dtype": "String",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 610,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "collection_stage",
+          "dtype": "String",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 4,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "case_status",
+          "dtype": "String",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 2,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "case_close_reason",
+          "dtype": "String",
+          "nulls": 3917,
+          "null_rate": 0.8914,
+          "distinct": 6,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "amount_collected_to_date",
+          "dtype": "Decimal(precision=18, scale=2)",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 804,
+          "distinct_basis": "exact",
+          "min": "0.00",
+          "max": "15418.37"
+        },
+        {
+          "name": "promise_status",
+          "dtype": "String",
+          "nulls": 3539,
+          "null_rate": 0.8054,
+          "distinct": 3,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "arrangement_status",
+          "dtype": "String",
+          "nulls": 4026,
+          "null_rate": 0.9162,
+          "distinct": 3,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "dpd_at_action",
+          "dtype": "Int32",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 245,
+          "distinct_basis": "exact",
+          "min": "0",
+          "max": "360"
+        },
+        {
+          "name": "action_id",
+          "dtype": "String",
+          "nulls": 1396,
+          "null_rate": 0.3177,
+          "distinct": 2998,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "action_timestamp",
+          "dtype": "Datetime(time_unit='us', time_zone=None)",
+          "nulls": 1396,
+          "null_rate": 0.3177,
+          "distinct": 2998,
+          "distinct_basis": "exact",
+          "min": "2025-10-01 08:06:04.268438",
+          "max": "2028-09-27 09:03:15.388262"
+        },
+        {
+          "name": "action_channel",
+          "dtype": "String",
+          "nulls": 1396,
+          "null_rate": 0.3177,
+          "distinct": 7,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "contact_outcome",
+          "dtype": "String",
+          "nulls": 1396,
+          "null_rate": 0.3177,
+          "distinct": 6,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "collections_action_type",
+          "dtype": "String",
+          "nulls": 1396,
+          "null_rate": 0.3177,
+          "distinct": 4,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "collections_outcome",
+          "dtype": "String",
+          "nulls": 1396,
+          "null_rate": 0.3177,
+          "distinct": 4,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "action_amount_collected",
+          "dtype": "Decimal(precision=18, scale=2)",
+          "nulls": 3951,
+          "null_rate": 0.8992,
+          "distinct": 443,
+          "distinct_basis": "exact",
+          "min": "5.67",
+          "max": "10363.71"
+        },
+        {
+          "name": "writeoff_amount",
+          "dtype": "Decimal(precision=18, scale=2)",
+          "nulls": 4326,
+          "null_rate": 0.9845,
+          "distinct": 68,
+          "distinct_basis": "exact",
+          "min": "15.81",
+          "max": "9345.44"
+        },
+        {
+          "name": "recovery_amount",
+          "dtype": "Decimal(precision=18, scale=2)",
+          "nulls": 4373,
+          "null_rate": 0.9952,
+          "distinct": 21,
+          "distinct_basis": "exact",
+          "min": "5.72",
+          "max": "551.99"
+        },
+        {
+          "name": "recovery_source",
+          "dtype": "String",
+          "nulls": 4373,
+          "null_rate": 0.9952,
+          "distinct": 4,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        }
+      ]
+    },
+    "customer_profile": {
+      "rows": 10000,
+      "shape": "entity_master",
+      "columns": [
+        {
+          "name": "customer_id",
+          "dtype": "String",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 10000,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "cust_segment",
+          "dtype": "String",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 4,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "relationship_open_date",
+          "dtype": "Date",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 5316,
+          "distinct_basis": "exact",
+          "min": "2003-11-20",
+          "max": "2028-09-10"
+        },
+        {
+          "name": "acc_cre_ts",
+          "dtype": "Datetime(time_unit='us', time_zone=None)",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 10000,
+          "distinct_basis": "exact",
+          "min": "2003-11-20 10:20:24.034678",
+          "max": "2028-09-10 12:03:41.314878"
+        },
+        {
+          "name": "relationship_close_date",
+          "dtype": "Date",
+          "nulls": 9216,
+          "null_rate": 0.9216,
+          "distinct": 699,
+          "distinct_basis": "exact",
+          "min": "2006-07-23",
+          "max": "2028-09-28"
+        },
+        {
+          "name": "customer_is_active",
+          "dtype": "Boolean",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 2,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "is_cust_stat_clr_y_n",
+          "dtype": "String",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 2,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "home_currency",
+          "dtype": "String",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 6,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "nationality_country_code",
+          "dtype": "String",
+          "nulls": 283,
+          "null_rate": 0.0283,
+          "distinct": 35,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "residence_country",
+          "dtype": "String",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 6,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "residence_state",
+          "dtype": "String",
+          "nulls": 76,
+          "null_rate": 0.0076,
+          "distinct": 50,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "employment_status",
+          "dtype": "String",
+          "nulls": 214,
+          "null_rate": 0.0214,
+          "distinct": 8,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "occupation_category",
+          "dtype": "String",
+          "nulls": 3062,
+          "null_rate": 0.3062,
+          "distinct": 16,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "income_band",
+          "dtype": "String",
+          "nulls": 547,
+          "null_rate": 0.0547,
+          "distinct": 8,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "kyc_status",
+          "dtype": "String",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 4,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "kyc_risk_rating",
+          "dtype": "String",
+          "nulls": 255,
+          "null_rate": 0.0255,
+          "distinct": 3,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "kyc_last_review_date",
+          "dtype": "Date",
+          "nulls": 255,
+          "null_rate": 0.0255,
+          "distinct": 2146,
+          "distinct_basis": "exact",
+          "min": "2006-07-23",
+          "max": "2028-09-29"
+        },
+        {
+          "name": "preferred_contact_channel",
+          "dtype": "String",
+          "nulls": 668,
+          "null_rate": 0.0668,
+          "distinct": 5,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "marketing_consent",
+          "dtype": "Boolean",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 2,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        }
+      ]
+    },
+    "customer_snapshot": {
+      "rows": 57762,
+      "shape": "periodic_snapshot",
+      "columns": [
+        {
+          "name": "customer_id",
+          "dtype": "String",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 9585,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "snapshot_date",
+          "dtype": "Date",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 1095,
+          "distinct_basis": "exact",
+          "min": "2025-10-01",
+          "max": "2028-09-30"
+        },
+        {
+          "name": "age_band",
+          "dtype": "String",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 8,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "has_checking",
+          "dtype": "Boolean",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 2,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "has_debit",
+          "dtype": "Boolean",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 2,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "has_credit",
+          "dtype": "Boolean",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 2,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "has_wallet",
+          "dtype": "Boolean",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 2,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "has_mortgage",
+          "dtype": "Boolean",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 2,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "has_consumer_loan",
+          "dtype": "Boolean",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 2,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "y_n_eligible_mortgage",
+          "dtype": "String",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 2,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "credit_score_bureau",
+          "dtype": "Int32",
+          "nulls": 8581,
+          "null_rate": 0.1486,
+          "distinct": 479,
+          "distinct_basis": "exact",
+          "min": "343",
+          "max": "850"
+        },
+        {
+          "name": "credit_score_internal",
+          "dtype": "Decimal(precision=10, scale=4)",
+          "nulls": 8581,
+          "null_rate": 0.1486,
+          "distinct": 1940,
+          "distinct_basis": "exact",
+          "min": "0.0045",
+          "max": "0.4500"
+        },
+        {
+          "name": "credit_score_bureau_date",
+          "dtype": "Date",
+          "nulls": 8581,
+          "null_rate": 0.1486,
+          "distinct": 1180,
+          "distinct_basis": "exact",
+          "min": "2025-07-04",
+          "max": "2028-09-27"
+        },
+        {
+          "name": "credit_score_internal_date",
+          "dtype": "Date",
+          "nulls": 8581,
+          "null_rate": 0.1486,
+          "distinct": 1137,
+          "distinct_basis": "exact",
+          "min": "2025-08-18",
+          "max": "2028-09-28"
+        },
+        {
+          "name": "credit_score_internal_version",
+          "dtype": "String",
+          "nulls": 8581,
+          "null_rate": 0.1486,
+          "distinct": 4,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "credit_bureau_source",
+          "dtype": "String",
+          "nulls": 8581,
+          "null_rate": 0.1486,
+          "distinct": 3,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "total_aum",
+          "dtype": "Decimal(precision=18, scale=2)",
+          "nulls": 657,
+          "null_rate": 0.0114,
+          "distinct": 38832,
+          "distinct_basis": "exact",
+          "min": "0.00",
+          "max": "78615603.30"
+        },
+        {
+          "name": "wealth_band",
+          "dtype": "String",
+          "nulls": 657,
+          "null_rate": 0.0114,
+          "distinct": 5,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "risk_profile_code",
+          "dtype": "String",
+          "nulls": 25606,
+          "null_rate": 0.4433,
+          "distinct": 5,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        }
+      ]
+    },
+    "fraud_case": {
+      "rows": 2171,
+      "shape": "event_stream",
+      "columns": [
+        {
+          "name": "alert_id",
+          "dtype": "String",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 2171,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "customer_id",
+          "dtype": "String",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 1251,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "alert_timestamp",
+          "dtype": "Datetime(time_unit='us', time_zone=None)",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 2171,
+          "distinct_basis": "exact",
+          "min": "2025-10-01 19:52:50.066431",
+          "max": "2028-09-28 19:22:44.086830"
+        },
+        {
+          "name": "alert_type",
+          "dtype": "String",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 9,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "detection_source",
+          "dtype": "String",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 5,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "alert_score_model_version",
+          "dtype": "String",
+          "nulls": 303,
+          "null_rate": 0.1396,
+          "distinct": 3,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "fraud_case_id",
+          "dtype": "String",
+          "nulls": 1682,
+          "null_rate": 0.7748,
+          "distinct": 489,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "case_open_timestamp",
+          "dtype": "Datetime(time_unit='us', time_zone=None)",
+          "nulls": 1682,
+          "null_rate": 0.7748,
+          "distinct": 489,
+          "distinct_basis": "exact",
+          "min": "2025-10-02 05:43:51.478352",
+          "max": "2028-09-27 04:33:52.171476"
+        },
+        {
+          "name": "fraud_type",
+          "dtype": "String",
+          "nulls": 1682,
+          "null_rate": 0.7748,
+          "distinct": 5,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        }
+      ]
+    },
+    "fraud_case_snapshot": {
+      "rows": 4606,
+      "shape": "child_of_event",
+      "columns": [
+        {
+          "name": "snapshot_date",
+          "dtype": "Date",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 1078,
+          "distinct_basis": "exact",
+          "min": "2025-10-01",
+          "max": "2028-09-30"
+        },
+        {
+          "name": "alert_id",
+          "dtype": "String",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 2171,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "alert_status",
+          "dtype": "String",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 4,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "case_status",
+          "dtype": "String",
+          "nulls": 2291,
+          "null_rate": 0.4974,
+          "distinct": 2,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "victim_or_perpetrator",
+          "dtype": "String",
+          "nulls": 3244,
+          "null_rate": 0.7043,
+          "distinct": 3,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "case_disposition",
+          "dtype": "String",
+          "nulls": 4132,
+          "null_rate": 0.8971,
+          "distinct": 4,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "disposition_timestamp",
+          "dtype": "Datetime(time_unit='us', time_zone=None)",
+          "nulls": 4132,
+          "null_rate": 0.8971,
+          "distinct": 474,
+          "distinct_basis": "exact",
+          "min": "2025-10-27 06:09:28.984327",
+          "max": "2028-09-30 07:57:50.740498"
+        },
+        {
+          "name": "total_exposure_amount",
+          "dtype": "Decimal(precision=18, scale=2)",
+          "nulls": 2291,
+          "null_rate": 0.4974,
+          "distinct": 1459,
+          "distinct_basis": "exact",
+          "min": "2.29",
+          "max": "43730.00"
+        },
+        {
+          "name": "confirmed_loss_amount",
+          "dtype": "Decimal(precision=18, scale=2)",
+          "nulls": 4132,
+          "null_rate": 0.8971,
+          "distinct": 311,
+          "distinct_basis": "exact",
+          "min": "0.00",
+          "max": "29450.88"
+        }
+      ]
+    },
+    "interaction_event": {
+      "rows": 17413914,
+      "shape": "event_stream",
+      "columns": [
+        {
+          "name": "event_id",
+          "dtype": "String",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": null,
+          "distinct_basis": "over 200,000",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "session_id",
+          "dtype": "String",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 48280,
+          "distinct_basis": "sample of 1,000,000 rows",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "customer_id",
+          "dtype": "String",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 9490,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "event_time",
+          "dtype": "Datetime(time_unit='us', time_zone=None)",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": null,
+          "distinct_basis": "over 200,000",
+          "min": "2025-10-01 00:14:55.946776",
+          "max": "2028-09-29 23:26:27.093608"
+        },
+        {
+          "name": "event_sequence_number",
+          "dtype": "Int32",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 77,
+          "distinct_basis": "sample of 1,000,000 rows",
+          "min": "1",
+          "max": "82"
+        },
+        {
+          "name": "event_type",
+          "dtype": "String",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 30,
+          "distinct_basis": "sample of 1,000,000 rows",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "page_or_screen",
+          "dtype": "String",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 12,
+          "distinct_basis": "sample of 1,000,000 rows",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "journey_name",
+          "dtype": "String",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 9,
+          "distinct_basis": "sample of 1,000,000 rows",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "journey_completed_flag",
+          "dtype": "Boolean",
+          "nulls": 16333038,
+          "null_rate": 0.9379,
+          "distinct": 2,
+          "distinct_basis": "sample of 1,000,000 rows",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "product_in_context",
+          "dtype": "String",
+          "nulls": 5770084,
+          "null_rate": 0.3313,
+          "distinct": 6,
+          "distinct_basis": "sample of 1,000,000 rows",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "error_code",
+          "dtype": "String",
+          "nulls": 17206977,
+          "null_rate": 0.9881,
+          "distinct": 6,
+          "distinct_basis": "sample of 1,000,000 rows",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "transaction_id",
+          "dtype": "String",
+          "nulls": 17002192,
+          "null_rate": 0.9764,
+          "distinct": 23695,
+          "distinct_basis": "sample of 1,000,000 rows",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "amt_txn",
+          "dtype": "Decimal(precision=18, scale=2)",
+          "nulls": 17002192,
+          "null_rate": 0.9764,
+          "distinct": 13910,
+          "distinct_basis": "sample of 1,000,000 rows",
+          "min": "2.00",
+          "max": "487490.00"
+        }
+      ]
+    },
+    "merchant": {
+      "rows": 13839,
+      "shape": "dimension",
+      "columns": [
+        {
+          "name": "merchant_id",
+          "dtype": "String",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 13839,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "primary_mcc",
+          "dtype": "String",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 129,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "merchant_country",
+          "dtype": "String",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 8,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        }
+      ]
+    },
+    "product_event": {
+      "rows": 360976,
+      "shape": "event_stream",
+      "columns": [
+        {
+          "name": "prd_event_id",
+          "dtype": "String",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": null,
+          "distinct_basis": "over 200,000",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "product_id",
+          "dtype": "String",
+          "nulls": 3331,
+          "null_rate": 0.0092,
+          "distinct": 27302,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "customer_id",
+          "dtype": "String",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 9506,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "event_date",
+          "dtype": "Date",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 1095,
+          "distinct_basis": "exact",
+          "min": "2025-10-01",
+          "max": "2028-09-30"
+        },
+        {
+          "name": "event_type",
+          "dtype": "String",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 9,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "initiated_by",
+          "dtype": "String",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 4,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "old_limit",
+          "dtype": "Decimal(precision=18, scale=2)",
+          "nulls": 350533,
+          "null_rate": 0.9711,
+          "distinct": 198,
+          "distinct_basis": "exact",
+          "min": "300.00",
+          "max": "135000.00"
+        },
+        {
+          "name": "new_limit",
+          "dtype": "Decimal(precision=18, scale=2)",
+          "nulls": 350533,
+          "null_rate": 0.9711,
+          "distinct": 233,
+          "distinct_basis": "exact",
+          "min": "300.00",
+          "max": "162500.00"
+        },
+        {
+          "name": "dpd_reset_flag",
+          "dtype": "String",
+          "nulls": 360817,
+          "null_rate": 0.9996,
+          "distinct": 2,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "application_id",
+          "dtype": "String",
+          "nulls": 341820,
+          "null_rate": 0.9469,
+          "distinct": 5659,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "product_code",
+          "dtype": "String",
+          "nulls": 341820,
+          "null_rate": 0.9469,
+          "distinct": 5,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "stage_name",
+          "dtype": "String",
+          "nulls": 341820,
+          "null_rate": 0.9469,
+          "distinct": 6,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "application_channel",
+          "dtype": "String",
+          "nulls": 341820,
+          "null_rate": 0.9469,
+          "distinct": 4,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "final_outcome",
+          "dtype": "String",
+          "nulls": 355317,
+          "null_rate": 0.9843,
+          "distinct": 4,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "approved_amount",
+          "dtype": "Decimal(precision=18, scale=2)",
+          "nulls": 359577,
+          "null_rate": 0.9961,
+          "distinct": 446,
+          "distinct_basis": "exact",
+          "min": "300.00",
+          "max": "718236.54"
+        }
+      ]
+    },
+    "product_snapshot": {
+      "rows": 285532,
+      "shape": "periodic_snapshot",
+      "columns": [
+        {
+          "name": "product_id",
+          "dtype": "String",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 31021,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "customer_id",
+          "dtype": "String",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 9585,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "snapshot_date",
+          "dtype": "Date",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 1095,
+          "distinct_basis": "exact",
+          "min": "2025-10-01",
+          "max": "2028-09-30"
+        },
+        {
+          "name": "product_type",
+          "dtype": "String",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 6,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "product_tier",
+          "dtype": "String",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 5,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "card_network",
+          "dtype": "String",
+          "nulls": 32150,
+          "null_rate": 0.1126,
+          "distinct": 4,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "currency",
+          "dtype": "String",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 6,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "open_date",
+          "dtype": "Date",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 6792,
+          "distinct_basis": "exact",
+          "min": "2003-11-20",
+          "max": "2028-09-29"
+        },
+        {
+          "name": "close_date",
+          "dtype": "Date",
+          "nulls": 281599,
+          "null_rate": 0.9862,
+          "distinct": 994,
+          "distinct_basis": "exact",
+          "min": "2025-10-03",
+          "max": "2028-09-30"
+        },
+        {
+          "name": "product_status",
+          "dtype": "String",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 6,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "account_number_masked",
+          "dtype": "String",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 9539,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "linked_product_id",
+          "dtype": "String",
+          "nulls": 253946,
+          "null_rate": 0.8894,
+          "distinct": 8740,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "current_balance",
+          "dtype": "Decimal(precision=18, scale=2)",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 162757,
+          "distinct_basis": "exact",
+          "min": "-2535.00",
+          "max": "974197.33"
+        },
+        {
+          "name": "credit_limit",
+          "dtype": "Decimal(precision=18, scale=2)",
+          "nulls": 54954,
+          "null_rate": 0.1925,
+          "distinct": 233,
+          "distinct_basis": "exact",
+          "min": "300.00",
+          "max": "162500.00"
+        },
+        {
+          "name": "interest_rate_pct",
+          "dtype": "Decimal(precision=6, scale=3)",
+          "nulls": 49652,
+          "null_rate": 0.1739,
+          "distinct": 5783,
+          "distinct_basis": "exact",
+          "min": "5.500",
+          "max": "26.927"
+        },
+        {
+          "name": "days_delinquent",
+          "dtype": "Int32",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 205,
+          "distinct_basis": "exact",
+          "min": "0",
+          "max": "360"
+        },
+        {
+          "name": "delinquency_start_date",
+          "dtype": "Date",
+          "nulls": 280833,
+          "null_rate": 0.9835,
+          "distinct": 733,
+          "distinct_basis": "exact",
+          "min": "2025-05-17",
+          "max": "2028-09-25"
+        },
+        {
+          "name": "overdue_amount",
+          "dtype": "Decimal(precision=18, scale=2)",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 4050,
+          "distinct_basis": "exact",
+          "min": "0.00",
+          "max": "24672.31"
+        },
+        {
+          "name": "overdue_principal_amt",
+          "dtype": "Decimal(precision=18, scale=2)",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 3918,
+          "distinct_basis": "exact",
+          "min": "0.00",
+          "max": "19244.40"
+        },
+        {
+          "name": "instalments_missed_count",
+          "dtype": "Int32",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 14,
+          "distinct_basis": "exact",
+          "min": "0",
+          "max": "13"
+        },
+        {
+          "name": "principal_amount",
+          "dtype": "Decimal(precision=18, scale=2)",
+          "nulls": 280230,
+          "null_rate": 0.9814,
+          "distinct": 1987,
+          "distinct_basis": "exact",
+          "min": "1500.00",
+          "max": "1089594.35"
+        },
+        {
+          "name": "sanctioned_amount",
+          "dtype": "Decimal(precision=18, scale=2)",
+          "nulls": 280230,
+          "null_rate": 0.9814,
+          "distinct": 1987,
+          "distinct_basis": "exact",
+          "min": "1500.00",
+          "max": "1089594.35"
+        },
+        {
+          "name": "instalment_amount",
+          "dtype": "Decimal(precision=18, scale=2)",
+          "nulls": 280230,
+          "null_rate": 0.9814,
+          "distinct": 2084,
+          "distinct_basis": "exact",
+          "min": "7.65",
+          "max": "6813.35"
+        },
+        {
+          "name": "instalment_frequency",
+          "dtype": "String",
+          "nulls": 280230,
+          "null_rate": 0.9814,
+          "distinct": 3,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "tenor_days",
+          "dtype": "Int32",
+          "nulls": 280230,
+          "null_rate": 0.9814,
+          "distinct": 9,
+          "distinct_basis": "exact",
+          "min": "365",
+          "max": "10958"
+        },
+        {
+          "name": "premature_withdrawal_flag",
+          "dtype": "Boolean",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 2,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "last_statement_date",
+          "dtype": "Date",
+          "nulls": 85002,
+          "null_rate": 0.2977,
+          "distinct": 1007,
+          "distinct_basis": "exact",
+          "min": "2025-10-02",
+          "max": "2028-09-28"
+        },
+        {
+          "name": "last_due_date",
+          "dtype": "Date",
+          "nulls": 85002,
+          "null_rate": 0.2977,
+          "distinct": 1097,
+          "distinct_basis": "exact",
+          "min": "2025-10-22",
+          "max": "2028-10-23"
+        },
+        {
+          "name": "last_payment_status",
+          "dtype": "String",
+          "nulls": 85002,
+          "null_rate": 0.2977,
+          "distinct": 4,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "minimum_due",
+          "dtype": "Decimal(precision=18, scale=2)",
+          "nulls": 85002,
+          "null_rate": 0.2977,
+          "distinct": 18584,
+          "distinct_basis": "exact",
+          "min": "0.00",
+          "max": "4118.29"
+        }
+      ]
+    },
+    "session": {
+      "rows": 847108,
+      "shape": "event_stream",
+      "columns": [
+        {
+          "name": "session_id",
+          "dtype": "String",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": null,
+          "distinct_basis": "over 200,000",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "customer_id",
+          "dtype": "String",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 9492,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "session_start",
+          "dtype": "Datetime(time_unit='us', time_zone=None)",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": null,
+          "distinct_basis": "over 200,000",
+          "min": "2025-10-01 00:13:56.898778",
+          "max": "2028-09-29 23:16:48.186320"
+        },
+        {
+          "name": "session_end",
+          "dtype": "Datetime(time_unit='us', time_zone=None)",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": null,
+          "distinct_basis": "over 200,000",
+          "min": "2025-10-01 00:24:33.277131",
+          "max": "2028-09-29 23:26:27.093608"
+        },
+        {
+          "name": "session_channel",
+          "dtype": "String",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 5,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "device_type",
+          "dtype": "String",
+          "nulls": 38064,
+          "null_rate": 0.0449,
+          "distinct": 4,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "os",
+          "dtype": "String",
+          "nulls": 38064,
+          "null_rate": 0.0449,
+          "distinct": 5,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "browser",
+          "dtype": "String",
+          "nulls": 595378,
+          "null_rate": 0.7028,
+          "distinct": 5,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "app_version",
+          "dtype": "String",
+          "nulls": 289794,
+          "null_rate": 0.3421,
+          "distinct": 6,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "login_method",
+          "dtype": "String",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 4,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "login_status",
+          "dtype": "String",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 3,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "login_failure_reason",
+          "dtype": "String",
+          "nulls": 813654,
+          "null_rate": 0.9605,
+          "distinct": 5,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "device_id",
+          "dtype": "String",
+          "nulls": 38064,
+          "null_rate": 0.0449,
+          "distinct": 18616,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "is_trusted_flag",
+          "dtype": "Boolean",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 2,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "ip_address_hash",
+          "dtype": "String",
+          "nulls": 38064,
+          "null_rate": 0.0449,
+          "distinct": 28762,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "geo_location_hash",
+          "dtype": "String",
+          "nulls": 21387,
+          "null_rate": 0.0252,
+          "distinct": 22521,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        }
+      ]
+    },
+    "txn_event": {
+      "rows": 10890458,
+      "shape": "event_stream",
+      "columns": [
+        {
+          "name": "txn_event_id",
+          "dtype": "String",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": null,
+          "distinct_basis": "over 200,000",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "record_type",
+          "dtype": "String",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 4,
+          "distinct_basis": "sample of 1,000,000 rows",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "link_reference",
+          "dtype": "String",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": null,
+          "distinct_basis": "over 200,000",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "linked_event_id",
+          "dtype": "String",
+          "nulls": 7351669,
+          "null_rate": 0.6751,
+          "distinct": null,
+          "distinct_basis": "over 200,000",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "customer_id",
+          "dtype": "String",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 9584,
+          "distinct_basis": "exact",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "product_id",
+          "dtype": "String",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 1953,
+          "distinct_basis": "sample of 1,000,000 rows",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "merchant_id",
+          "dtype": "String",
+          "nulls": 3803076,
+          "null_rate": 0.3492,
+          "distinct": 5853,
+          "distinct_basis": "sample of 1,000,000 rows",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "event_timestamp",
+          "dtype": "Datetime(time_unit='us', time_zone=None)",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": null,
+          "distinct_basis": "over 200,000",
+          "min": "2025-10-01 00:04:38.039950",
+          "max": "2028-09-30 00:00:00"
+        },
+        {
+          "name": "posted_timestamp",
+          "dtype": "Datetime(time_unit='us', time_zone=None)",
+          "nulls": 3840460,
+          "null_rate": 0.3526,
+          "distinct": null,
+          "distinct_basis": "over 200,000",
+          "min": "2025-10-01 00:11:25.077658",
+          "max": "2028-09-30 00:00:00"
+        },
+        {
+          "name": "settlement_timestamp",
+          "dtype": "Datetime(time_unit='us', time_zone=None)",
+          "nulls": 3840460,
+          "null_rate": 0.3526,
+          "distinct": null,
+          "distinct_basis": "over 200,000",
+          "min": "2025-10-01 00:11:25.077658",
+          "max": "2028-09-30 00:00:00"
+        },
+        {
+          "name": "record_available_timestamp",
+          "dtype": "Datetime(time_unit='us', time_zone=None)",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": null,
+          "distinct_basis": "over 200,000",
+          "min": "2025-10-01 00:04:39.173642",
+          "max": "2028-10-12 16:36:10.808081"
+        },
+        {
+          "name": "amount",
+          "dtype": "Decimal(precision=18, scale=2)",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 122306,
+          "distinct_basis": "sample of 1,000,000 rows",
+          "min": "2.00",
+          "max": "718236.54"
+        },
+        {
+          "name": "currency",
+          "dtype": "String",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 3,
+          "distinct_basis": "sample of 1,000,000 rows",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "fx_rate",
+          "dtype": "Decimal(precision=12, scale=6)",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 3346,
+          "distinct_basis": "sample of 1,000,000 rows",
+          "min": "0.055569",
+          "max": "1.335211"
+        },
+        {
+          "name": "balance_before",
+          "dtype": "Decimal(precision=18, scale=2)",
+          "nulls": 3840460,
+          "null_rate": 0.3526,
+          "distinct": null,
+          "distinct_basis": "over 200,000",
+          "min": "-2535.00",
+          "max": "978715.98"
+        },
+        {
+          "name": "decision",
+          "dtype": "String",
+          "nulls": 7049998,
+          "null_rate": 0.6474,
+          "distinct": 2,
+          "distinct_basis": "sample of 1,000,000 rows",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "posting_status",
+          "dtype": "String",
+          "nulls": 3840460,
+          "null_rate": 0.3526,
+          "distinct": 3,
+          "distinct_basis": "sample of 1,000,000 rows",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "decline_category",
+          "dtype": "String",
+          "nulls": 10633095,
+          "null_rate": 0.9764,
+          "distinct": 10,
+          "distinct_basis": "sample of 1,000,000 rows",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "is_customer_caused",
+          "dtype": "Boolean",
+          "nulls": 10633095,
+          "null_rate": 0.9764,
+          "distinct": 2,
+          "distinct_basis": "sample of 1,000,000 rows",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "txn_channel",
+          "dtype": "String",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 7,
+          "distinct_basis": "sample of 1,000,000 rows",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "initiator_type",
+          "dtype": "String",
+          "nulls": 3840460,
+          "null_rate": 0.3526,
+          "distinct": 3,
+          "distinct_basis": "sample of 1,000,000 rows",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "pos_entry_mode",
+          "dtype": "String",
+          "nulls": 8210064,
+          "null_rate": 0.7539,
+          "distinct": 6,
+          "distinct_basis": "sample of 1,000,000 rows",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "transaction_type",
+          "dtype": "String",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 14,
+          "distinct_basis": "sample of 1,000,000 rows",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "category",
+          "dtype": "String",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 20,
+          "distinct_basis": "sample of 1,000,000 rows",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "merchant_country",
+          "dtype": "String",
+          "nulls": 3803076,
+          "null_rate": 0.3492,
+          "distinct": 8,
+          "distinct_basis": "sample of 1,000,000 rows",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "customer_country_code",
+          "dtype": "String",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 3,
+          "distinct_basis": "sample of 1,000,000 rows",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "is_recurring",
+          "dtype": "Boolean",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 2,
+          "distinct_basis": "sample of 1,000,000 rows",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "reversed_transaction_id",
+          "dtype": "String",
+          "nulls": 10853494,
+          "null_rate": 0.9966,
+          "distinct": 3431,
+          "distinct_basis": "sample of 1,000,000 rows",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "debit_credit_indicator",
+          "dtype": "String",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 2,
+          "distinct_basis": "sample of 1,000,000 rows",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "counterparty_type",
+          "dtype": "String",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 4,
+          "distinct_basis": "sample of 1,000,000 rows",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "account_number_masked",
+          "dtype": "String",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 1766,
+          "distinct_basis": "sample of 1,000,000 rows",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "payment_funding_product",
+          "dtype": "String",
+          "nulls": 10466857,
+          "null_rate": 0.9611,
+          "distinct": 2,
+          "distinct_basis": "sample of 1,000,000 rows",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "cvv_result",
+          "dtype": "String",
+          "nulls": 9983435,
+          "null_rate": 0.9167,
+          "distinct": 3,
+          "distinct_basis": "sample of 1,000,000 rows",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "pin_verified_flag",
+          "dtype": "Boolean",
+          "nulls": 8988800,
+          "null_rate": 0.8254,
+          "distinct": 2,
+          "distinct_basis": "sample of 1,000,000 rows",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "threeds_flag",
+          "dtype": "Boolean",
+          "nulls": 9983435,
+          "null_rate": 0.9167,
+          "distinct": 2,
+          "distinct_basis": "sample of 1,000,000 rows",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "threeds_outcome",
+          "dtype": "String",
+          "nulls": 10414264,
+          "null_rate": 0.9563,
+          "distinct": 4,
+          "distinct_basis": "sample of 1,000,000 rows",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "is_fraud_flagged",
+          "dtype": "Boolean",
+          "nulls": 0,
+          "null_rate": 0.0,
+          "distinct": 2,
+          "distinct_basis": "sample of 1,000,000 rows",
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "alert_id",
+          "dtype": "String",
+          "nulls": 10888083,
+          "null_rate": 0.9998,
+          "distinct": 167,
+          "distinct_basis": "sample of 1,000,000 rows",
+          "min": null,
+          "max": null
+        }
+      ]
+    }
+  }
+}
