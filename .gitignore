@@ -1,0 +1,9 @@
+.venv/
+Data_Pipeline/10k_data/
+Data_Pipeline/out/demo10k/events.parquet
+Data_Pipeline/out/demo10k/profiles.parquet
+
+
+# python cache
+__pycache__/
+*.pyc
